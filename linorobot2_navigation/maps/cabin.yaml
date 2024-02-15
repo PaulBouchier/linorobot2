@@ -1,0 +1,7 @@
+image: cabin.pgm
+mode: trinary
+resolution: 0.010
+origin: [-0.419, -0.566, 0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
