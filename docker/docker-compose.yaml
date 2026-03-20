@@ -71,8 +71,8 @@ services:
       base_serial_port:=${BASE_SERIAL_PORT}
       joy:=${LAUNCH_JOYSTICK}
     devices:
-      - /dev/ttyACM0:/dev/ttyACM0 # Change this according to your robot's base serial port
-    #   - /dev/ldlidar:/dev/ldlidar # This is needed for all hardware to be connected
+      - /dev/ttyACM0:/dev/ttyUSB0 # Change this according to your robot's base serial port
+      - /dev/ldlidar:/dev/ldlidar # This is needed for all hardware to be connected
     #   - /dev/ydlidar:/dev/ydlidar 
     #   - /dev/rplidar:/dev/rplidar 
 
