@@ -62,13 +62,7 @@
     <!-- chessboard -->
     <include>
       <uri>model://chessboard</uri>
-      <pose>2 2 0.001 0 0 0</pose>
-    </include>
-
-    <!-- white pieces -->
-    <include>
-      <uri>model://kingW</uri>
-      <pose>0.5 0.5 0.005 0 0 0</pose>
+      <pose>2 -2 0.001 0 0 -1.5708</pose>
     </include>
 
   </world>
