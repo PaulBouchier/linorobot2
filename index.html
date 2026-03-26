@@ -337,6 +337,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Terminology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#help-and-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Help and Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -602,7 +619,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#help-and-support" class="md-nav__link">
+  <a href="#help-and-support_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Help and Support
@@ -937,6 +954,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Terminology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#help-and-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Help and Support
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1202,7 +1236,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#help-and-support" class="md-nav__link">
+  <a href="#help-and-support_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         Help and Support
@@ -1237,10 +1271,11 @@
 <p>Welcome to the linorobot2 documentation. This set of guides walks you through everything you need to go from a bare robot with wheels and motors to a fully autonomous robot that can build maps of its environment and navigate them on its own. It includes how to build
 a "digital twin" of your Physical Robot and run it in simulation.</p>
 <p>These docs are structured as a tutorial sequence, with each section building on the previous one, explaining not just <em>how</em> to configure something but <em>why</em> it exists and what role it plays in the larger system. The approach is inspired by the <a href="https://docs.nav2.org/setup_guides/index.html">Nav2 setup guides</a> and the original <a href="https://github.com/linorobot/linorobot">linorobot</a> ROS1 wiki.</p>
-<p>linorobot2 supports three robot base configurations (2WD, 4WD, Mecanum drive) and integrates with ROS2 Jazzy, Nav2, SLAM Toolbox, and robot_localization out of the box.</p>
+<p>linorobot2 supports three robot base configurations
+(differential drive, skid steer, mecanum drive) and integrates with ROS2 Jazzy, Nav2, SLAM Toolbox, and robot_localization out of the box.</p>
 <h2 id="why-linorobot2">Why linorobot2<a class="headerlink" href="#why-linorobot2" title="Permanent link">&para;</a></h2>
 <p>If you're planning to build your own custom ROS2 robot that's differential
-drive, skid-steer, or Mecanum Drive using commonly-used parts and a
+drive, skid-steer, or mecanum drive using commonly-used parts and a
 microcontroller for low-level control, then the linorobot2 system may
 be a good fit for you. It provides these benefits:</p>
 <ul>
@@ -1254,7 +1289,7 @@ highly parameterized configuration files </p>
 <li>
 <p>Predictable timing for high-frequency control loops. The Microcontroller
 runs Robot Firmware that executes low-level high-frequency control loops
-on a physical robot more predictably than a linux computer.</p>
+on a Physical Robot more predictably than a linux computer can.</p>
 </li>
 <li>
 <p>Extending ROS topic subscribers and publishers out to the
@@ -1263,7 +1298,8 @@ the Microcontroller. You don't need to modify the communication channel to
 support new messages. This is enabled by using micro-ros for passing ROS
 messages between Robot Firmware and Robot Software. There is a standard
 process for defining custom messages which makes it easy to extend to
-support custom message types.</p>
+support custom message types that are exchanged between Robot Firmware
+and Robot Software.</p>
 </li>
 <li>
 <p>Easier to keep robot customizations up to date with later versions of
@@ -1284,7 +1320,7 @@ is not for you.</p>
 </li>
 <li>
 <p>AI: Linorobot2 doesn't have explicit connections to AI. If you want
-AI to navigate your robot, linorobot might not have much to offer beyond
+AI to navigate your robot, linorobot2 might not have much to offer beyond
 its interfaces at the base-controller level and at the Nav2 stack level.</p>
 </li>
 </ul>
@@ -1334,27 +1370,28 @@ Workstation running simulation.</p>
 <li>
 <p><strong>Base Controller</strong>: The Microcontroller and the sensors and motor
 controllers it's connected to, which together control Physical Robot
-movement and feed sensor data back to the Robot Computer.</p>
+wheel movement and feed sensor data back to Robot Software.</p>
 </li>
 <li>
-<p><strong>Microcontroller</strong>: The ESP32 or Pico or Pico2 microprocessor and its
-firmware which runs ### Help and Support
-Issues can be filed in the usual way in the github repos for
-linorobot2 and linorobot2_hardware. In addition,
-anyone is welcome to join the [linorobot google group(https://groups.google.com/g/linorobot) and ask questions or discuss matters relevant to the project.
-the low-level motor-control, sensing and control
+<p><strong>Microcontroller</strong>: The ESP32 or Pico or Pico2 microcontroller and
+its Robot Firmware which runs the low-level motor-control, sensing and control
 loops onboard the Physical Robot.</p>
 </li>
 </ul>
+<h3 id="help-and-support">Help and Support<a class="headerlink" href="#help-and-support" title="Permanent link">&para;</a></h3>
+<p>Issues and discussions can be filed in the usual way in the github repos
+for linorobot2 and linorobot2_hardware. In addition, anyone is welcome to
+join the [linorobot google group(https://groups.google.com/g/linorobot)
+and ask questions or discuss matters relevant to the project.</p>
 <h2 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h2>
 <h3 id="physical-robot">Physical Robot<a class="headerlink" href="#physical-robot" title="Permanent link">&para;</a></h3>
 <p>A Physical Robot should meet these requirements:</p>
 <ul>
-<li>A single Microcontroller that runs motor controllers, encoders and
+<li>A single Microcontroller runs motor controllers, encoders and
 (optionally) an IMU.</li>
-<li>Supported lidar or a depth camera</li>
+<li>The robot has a supported lidar or a depth camera</li>
 <li>The Microcontroller should be an ESP32 or Pico or Pico2. ESP32 is required
-to make the Robot Wifi Configuration work. The Teensy
+to make the Robot Wifi Configuration work. The Teensy microcontroller
 is deprecated but should still work.</li>
 <li>Differential drive, skid-steer or meccanum drive type. Ackermann steered
 robots are not yet supported.</li>
@@ -1375,7 +1412,7 @@ it work.</p>
 <h2 id="system-architecture">System Architecture<a class="headerlink" href="#system-architecture" title="Permanent link">&para;</a></h2>
 <p>This section describes the system architecture within which a linorobot2 robot
 runs. Additional details about the linorobot2 architectural goals and implementation
-are <a href="../architecture/">here</a></p>
+are <a href="architecture/">here</a></p>
 <h3 id="physical-robot_1">Physical Robot<a class="headerlink" href="#physical-robot_1" title="Permanent link">&para;</a></h3>
 <p>The architecture of a system that includes a linorobot2 Physical Robot is shown below.</p>
 <pre class="mermaid"><code>flowchart LR
@@ -1392,13 +1429,13 @@ are <a href="../architecture/">here</a></p>
 well as to visualize the robot and its data using ROS GUI tools like
 rviz and rqt. It also runs the Robot Firmware build system (PlatformIO),
 and reprograms the Microcontroller with Robot Firmware updates.</p>
-<p>The Robot Software includes linorobot2 packages from this repo, as well
-as the Nav2 navigation packages and other ROS packages. It is ROS
+<p>The Robot Software includes linorobot2 packages from this repo, as
+well as the Nav2 navigation packages and other ROS packages. It is ROS
 software that runs the navigation algorithms that enable the robot to
-make maps and autonomously navigate using them. It may run on an onboard
-Robot Computer that uses a USB serial link to communicate with Robot
-Firmware. Alternatively, it may run on the Workstation and use wifi to
-communicate with Robot Firmware.</p>
+make maps and autonomously navigate using them. Robot Software may run
+on an onboard Robot Computer that uses a USB serial link to communicate
+with Robot Firmware. Alternatively, it may run on the Workstation and
+use wifi to communicate with Robot Firmware.</p>
 <p>The Robot Firmware runs on the onboard Microcontroller, accepts motion
 commands from Robot Software, and translates them into hardware actions
 that turn the wheel motors. It also reads the sensors and passes their
@@ -1422,7 +1459,8 @@ visualize the robot and its data using ROS GUI tools like rviz and rqt.</p>
 linorobot2 packages from this repo, as well as the Nav2 navigation
 packages and other ROS packages. It is the ROS software that runs the
 navigation algorithms that enable the robot to make maps and autonomously
-navigate using them. It may run on the Workstation, or up in the cloud.</p>
+navigate using them. Robot Software and Gazebo may run on the Workstation,
+or up in the cloud.</p>
 <p>The Gazebo simulator runs a simulation of the robot and its interactions
 with a simulated world. It has the same interfaces to Robot Software as
 the Physical Robot.</p>
@@ -1438,7 +1476,7 @@ robot that runs ROS and communicates with the Microcontroller.
 As well, the network-connected Workstation provides for running
 rviz and other graphical programs on a desktop while the Physical Robot
 moves around. The Robot Computer Config is shown below.</p>
-<p><img alt="IMAGE: robot_computer_config" src="robot_computer_config.drawio.png" /></p>
+<p><img alt="IMAGE: robot_computer_config" src="assets/robot_computer_config.drawio.png" /></p>
 <p>Linorobot2 is installed on both the Workstation and the Robot Computer. A
 linorobot2 launchfile starts rviz on the workstation.
 Other linorobot2 launchfiles on the Robot Computer start robot bringup and Nav2.</p>
@@ -1471,7 +1509,7 @@ as rviz and other graphical programs. The Workstation communicates over
 wifi with an ESP32 Microcontroller on the Physical Robot. This config takes
 advantage of micro-ros' ability to use either serial
 or wifi links. The Robot Wifi config is shown below.
-<img alt="robot_wifi_config" src="robot_wifi_config.drawio.png" /></p>
+<img alt="robot_wifi_config" src="assets/robot_wifi_config.drawio.png" /></p>
 <p>Robot Firmware running on the Microcontroller
 publishes sensor data to Robot Software running on the Workstation, which enables
 Nav2 to run SLAM and path planning and navigation algorithms that in
@@ -1506,7 +1544,7 @@ linorobot2_hardware repo is not involved (there is no hardware).</p>
 them on a Physical Robot. It can optionally be run in a docker
 container, meaning the host OS is decoupled from ROS dependencies.
 The Simulation configuration is shown below.
-<img alt="simulation_config" src="simulation_config.drawio.png" /></p>
+<img alt="simulation_config" src="assets/simulation_config.drawio.png" /></p>
 <h4 id="advantages_2">Advantages<a class="headerlink" href="#advantages_2" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Develop and test on a "digital twin" of the Physical Robot</li>
@@ -1531,7 +1569,7 @@ This config enables development of robot algorithms on a really
 powerful cloud compute instance prior to putting
 them on a Physical Robot.
 The Simulation config is shown below.
-<img alt="simulation_config" src="cloud_simulation_config.drawio.png" /></p>
+<img alt="simulation_config" src="assets/cloud_simulation_config.drawio.png" /></p>
 <h4 id="advantages_3">Advantages<a class="headerlink" href="#advantages_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Same as Workstation simulation</li>
@@ -1546,7 +1584,7 @@ than buying a high-end workstation, depending on your use and needs.</li>
 <li>Using virtual KVM over a VPN and setting up NVidia Cuda libraries in the cloud
 adds configuration complexity</li>
 </ul>
-<h2 id="help-and-support">Help and Support<a class="headerlink" href="#help-and-support" title="Permanent link">&para;</a></h2>
+<h2 id="help-and-support_1">Help and Support<a class="headerlink" href="#help-and-support_1" title="Permanent link">&para;</a></h2>
 <p>Issues and Discussions can be filed in the usual way in the github repos for
 linorobot2 and linorobot2_hardware. In addition,
 anyone is welcome to join the [linorobot google group(https://groups.google.com/g/linorobot) and ask questions or discuss matters relevant to the project.</p>
