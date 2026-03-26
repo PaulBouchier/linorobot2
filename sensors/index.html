@@ -1011,7 +1011,10 @@
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&lt;origin</span><span class="w"> </span><span class="na">xyz=</span><span class="s">&quot;0.14 0.0 0.045&quot;</span><span class="w"> </span><span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nt">&lt;/xacro:property&gt;</span>
 </code></pre></div>
-<p>All positions are measured from <code>base_link</code> (the center of the robot's base). Change these values to match where your sensors are physically mounted. After editing the xacro file, rebuild the workspace:</p>
+<p>All positions are measured from <code>base_link</code> (the point about which the robot rotates).
+On a differential drive or skid steer robot this is typically the midpoint between
+the driving wheels. Change these values to match where your sensors are physically
+mounted. After editing the xacro file, rebuild the workspace:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>&lt;robot_computer_ws&gt;
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>colcon<span class="w"> </span>build
 </code></pre></div>
