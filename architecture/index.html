@@ -255,6 +255,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../SystemConfigurations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Configurations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../installation/" class="md-nav__link">
         
   
@@ -518,6 +545,45 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Architecture
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="System Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physical-robot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical Robot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulated-robot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulated Robot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#architectural-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -560,6 +626,64 @@
 
 
 <h1 id="linorobot2-architecture">Linorobot2 Architecture<a class="headerlink" href="#linorobot2-architecture" title="Permanent link">&para;</a></h1>
+<h2 id="system-architecture">System Architecture<a class="headerlink" href="#system-architecture" title="Permanent link">&para;</a></h2>
+<p>This section describes the system architecture within which a linorobot2 robot
+runs.</p>
+<h3 id="physical-robot">Physical Robot<a class="headerlink" href="#physical-robot" title="Permanent link">&para;</a></h3>
+<p>The architecture of a system that includes a linorobot2 Physical Robot is shown below.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph M[Microcontroller]
+        RF[Robot Firmware]
+    end
+    RS[Robot Software];
+    W[Workstation]&lt;--&gt;|GUIs|RS
+    RS&lt;--&gt;|serial or wifi|RF
+    M--&gt;Motors
+    M&lt;--&gt;Sensors
+    W-. Reprogram .-&gt;M</code></pre>
+<p>The Workstation provides the user a way to start Robot Software, as
+well as to visualize the robot and its data using ROS GUI tools like
+rviz and rqt. It also runs the Robot Firmware build system (PlatformIO),
+and reprograms the Microcontroller with Robot Firmware updates.</p>
+<p>The Robot Software includes linorobot2 packages from this repo, as
+well as the Nav2 navigation packages and other ROS packages. It is ROS
+software that runs the navigation algorithms that enable the robot to
+make maps and autonomously navigate using them. Robot Software may run
+on an onboard Robot Computer that uses a USB serial link to communicate
+with Robot Firmware. Alternatively, it may run on the Workstation and
+use wifi to communicate with Robot Firmware.</p>
+<p>The Robot Firmware runs on the onboard Microcontroller, accepts motion
+commands from Robot Software, and translates them into hardware actions
+that turn the wheel motors. It also reads the sensors and passes their
+data back to Robot Software. Robot Firmware runs high-frequency
+real-time control loops with good predictability, offloading that task
+from the Robot Computer.</p>
+<h3 id="simulated-robot">Simulated Robot<a class="headerlink" href="#simulated-robot" title="Permanent link">&para;</a></h3>
+<p>The architecture of a system that includes a linorobot2 Simulated Robot
+is shown below.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph G[Gazebo]
+        SR[Simulated Robot]
+    end
+    RS[Robot Software];
+    W[Workstation]&lt;--&gt;|GUIs|RS
+    RS&lt;--&gt;G</code></pre>
+<p>As with the Physical Robot, the Workstation provides the user a way to
+start Robot Software and the Gazebo physics simulator, as well as to
+visualize the robot and its data using ROS GUI tools like rviz and rqt.</p>
+<p>The Robot Software is the same as in a Physical Robot - it includes
+linorobot2 packages from this repo, as well as the Nav2 navigation
+packages and other ROS packages. It is the ROS software that runs the
+navigation algorithms that enable the robot to make maps and autonomously
+navigate using them. Robot Software and Gazebo may run on the Workstation,
+or up in the cloud.</p>
+<p>The Gazebo simulator runs a simulation of the robot and its interactions
+with a simulated world. It has the same interfaces to Robot Software as
+the Physical Robot.</p>
+<p>The fact that Gazebo provides the same interfaces as the Physical Robot
+enables it to simulate a "digital twin" of the Physical Robot. No changes
+in Robot Software are needed to switch between the Physical Robot itself
+and the Simulated Robot that mirrors the Physical Robot.</p>
 <h2 id="architectural-goals">Architectural Goals<a class="headerlink" href="#architectural-goals" title="Permanent link">&para;</a></h2>
 <p>The architectural goals of linorobot2 and linorobot2_hardware are
 to enable ROS2 navigation, both on Physical Robot hardware and for
