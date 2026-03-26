@@ -589,17 +589,17 @@ and spawning the Simulated Robot in Gazebo.</p>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <p>The figure below shows the major subsystems and launch files for running
 on real hardware and in simulation.</p>
-<p><img alt="linorobot2_architecture" src="linorobot2_launchfiles.png" /></p>
+<p><img alt="linorobot2_architecture" src="../assets/linorobot2_launchfiles.png" /></p>
 <p>Assuming you're using supported sensors and motor drivers, linorobot2
 automatically launches the necessary hardware drivers, with the topics
 being conveniently matched with the topics available in Gazebo. This
 allows users to define parameters for high level applications (ie. Nav2
 SlamToolbox, AMCL) that are common to both virtual and physical robots.</p>
 <p>The figure below summarizes the topics available after launching a connection to a hardware robot by running <strong>bringup.launch.py</strong>. It also shows the functions assigned to the microcontroller for physical robot control.
-<img alt="linorobot2_microcontroller" src="microcontroller_architecture.png" /></p>
+<img alt="linorobot2_microcontroller" src="../assets/microcontroller_architecture.png" /></p>
 <p>The diagram below shows a communication protocol stack view of Robot Software and
 Robot Firmware, and how they relate.</p>
-<p>![ros and micro-ros architecture](ros_microros_architecture.png</p>
+<p>![ros and micro-ros architecture](assets/ros_microros_architecture.png</p>
 
 
 

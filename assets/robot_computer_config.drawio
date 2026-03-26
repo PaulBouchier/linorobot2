@@ -1,6 +1,6 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
   <diagram name="Page-1" id="euVGchr6KtYPVy-H-ZI9">
-    <mxGraphModel dx="996" dy="766" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1138" dy="911" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -51,7 +51,7 @@
         <mxCell id="dSrmmij8tS18TGJSfKII-7" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Microcontroller&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="210" y="445" width="130" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="dSrmmij8tS18TGJSfKII-8" value="firmware from linorobot2_hardware" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="dSrmmij8tS18TGJSfKII-8" value="Robot Firmware from linorobot2_hardware" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="240" y="475" width="230" height="80" as="geometry" />
         </mxCell>
         <mxCell id="dSrmmij8tS18TGJSfKII-10" value="Sensors" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
@@ -111,7 +111,7 @@
           <mxGeometry x="180" y="250" width="540" height="170" as="geometry" />
         </mxCell>
         <mxCell id="iHs-tcoJrlpwTaKuHuWq-4" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Robot&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Computer&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
-          <mxGeometry x="210" y="265" width="90" height="50" as="geometry" />
+          <mxGeometry x="640" y="260" width="90" height="50" as="geometry" />
         </mxCell>
         <mxCell id="iHs-tcoJrlpwTaKuHuWq-5" value="linorobot2&lt;div&gt;packages&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="215" y="315" width="120" height="60" as="geometry" />
@@ -149,11 +149,17 @@
         <mxCell id="G6NcD-gu3-BqIOdEkEgP-9" value="depth&lt;div&gt;sensor&lt;/div&gt;&lt;div&gt;(optional)&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="768" y="395" width="70" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="eUdLjxLdrjornWLcIA8J-1" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.352;entryY=0.529;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="iHs-tcoJrlpwTaKuHuWq-5" target="iHs-tcoJrlpwTaKuHuWq-3">
+        <mxCell id="eUdLjxLdrjornWLcIA8J-1" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.352;entryY=0.529;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="iHs-tcoJrlpwTaKuHuWq-5" target="iHs-tcoJrlpwTaKuHuWq-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="50" y="440" as="sourcePoint" />
             <mxPoint x="100" y="390" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="85T8CkGx2KHCqQJ6u-K6-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="275" width="330" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="85T8CkGx2KHCqQJ6u-K6-3" value="Robot Software" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="200" y="390" width="110" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
