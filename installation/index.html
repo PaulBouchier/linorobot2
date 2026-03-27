@@ -458,15 +458,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-install-robot-software-package" class="md-nav__link">
+  <a href="#21-install-robot-software-packages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 Install Robot Software Package
+        2.1 Install Robot Software Packages
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.1 Install Robot Software Package">
+    <nav class="md-nav" aria-label="2.1 Install Robot Software Packages">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -864,15 +864,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-install-robot-software-package" class="md-nav__link">
+  <a href="#21-install-robot-software-packages" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.1 Install Robot Software Package
+        2.1 Install Robot Software Packages
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2.1 Install Robot Software Package">
+    <nav class="md-nav" aria-label="2.1 Install Robot Software Packages">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -945,7 +945,7 @@ Physical Robot because the build of Robot Firmware depends on it. It is also
 needed to run the Robot Wifi Configuration.</p>
 <p>If you are building the Onboard Robot Computer configuration, you also need
 to install Robot Software on the onboard Robot Computer.</p>
-<p>See <a href="/system_configurations/">here</a> for definitions of the configurations.</p>
+<p>See <a href="system_configurations/">here</a> for definitions of the configurations.</p>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <p>The Workstation and Robot Computer need ROS2 Jazzy. If you haven't installed it yet,
 use the <a href="https://github.com/linorobot/ros2me">ros2me</a> installer script,
@@ -1114,8 +1114,8 @@ and creates a <code>linorobot2_ws</code> in your <code>$HOME</code> directory.</
 </table>
 <h3 id="workstation-rviz-remote-visualization-support">Workstation: RVIZ (Remote Visualization) Support<a class="headerlink" href="#workstation-rviz-remote-visualization-support" title="Permanent link">&para;</a></h3>
 <p>When working with a Physical Robot, you'll want to visualize what's
-happening from a separate machine (the laser scan, the map being built,
-and the robot's pose) without running a full simulation. Install
+happening from the Workstation (the laser scan, the map being built,
+and the robot's pose) without running a simulation. Install
 <a href="https://github.com/linorobot/linorobot2_viz">linorobot2_viz</a> on your
 host machine for this purpose:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>&lt;host_machine_ws&gt;
@@ -1129,7 +1129,7 @@ host machine for this purpose:</p>
 <p>Robot Firmware is build with the PlatformIO build system. First, you install
 PlatformIO, then you clone and build Robot Firmware.</p>
 <h4 id="install-platformio">Install PlatformIO<a class="headerlink" href="#install-platformio" title="Permanent link">&para;</a></h4>
-<p>Download and install platformio. <a href="https://platformio.org/">Platformio</a>
+<p>Download and install <a href="https://platformio.org/">Platformio</a> - it
 allows you to develop, configure, and upload Robot Firmware to the
 Microcontroller without the Arduino IDE. This means that you can upload
 the firmware using a USB serial cable, or even remotely using OTA (Over The
@@ -1163,7 +1163,7 @@ require a Physical Robot at all. It's a great way to tune Nav2 parameters
 and test your configuration before deploying to hardware. If you only
 intend to run simulations, and not build a Physical Robot, you can use
 the following simplified Robot Software installation procedure.</p>
-<h3 id="21-install-robot-software-package">2.1 Install Robot Software Package<a class="headerlink" href="#21-install-robot-software-package" title="Permanent link">&para;</a></h3>
+<h3 id="21-install-robot-software-packages">2.1 Install Robot Software Packages<a class="headerlink" href="#21-install-robot-software-packages" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>&lt;host_machine_ws&gt;
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span><span class="nv">$ROS_DISTRO</span><span class="w"> </span>https://github.com/linorobot/linorobot2<span class="w"> </span>src/linorobot2
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>rosdep<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rosdep<span class="w"> </span>install<span class="w"> </span>--from-path<span class="w"> </span>src<span class="w"> </span>--ignore-src<span class="w"> </span>-y<span class="w"> </span>--skip-keys<span class="w"> </span>microxrcedds_agent<span class="w"> </span>--skip-keys<span class="w"> </span>micro_ros_agent
