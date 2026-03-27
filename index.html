@@ -14,7 +14,7 @@
       
       
       
-        <link rel="next" href="SystemConfigurations/">
+        <link rel="next" href="system_configurations/">
       
       
         
@@ -482,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="SystemConfigurations/" class="md-nav__link">
+      <a href="system_configurations/" class="md-nav__link">
         
   
   
@@ -976,6 +976,7 @@ a "digital twin" of your Physical Robot and run it in simulation.</p>
 <p>These docs are structured as a tutorial sequence, with each section building on the previous one, explaining not just <em>how</em> to configure something but <em>why</em> it exists and what role it plays in the larger system. The approach is inspired by the <a href="https://docs.nav2.org/setup_guides/index.html">Nav2 setup guides</a> and the original <a href="https://github.com/linorobot/linorobot">linorobot</a> ROS1 wiki.</p>
 <p>linorobot2 supports three robot base configurations
 (differential drive, skid steer, mecanum drive) and integrates with ROS2 Jazzy, Nav2, SLAM Toolbox, and robot_localization out of the box.</p>
+<hr />
 <h2 id="why-linorobot2">Why linorobot2<a class="headerlink" href="#why-linorobot2" title="Permanent link">&para;</a></h2>
 <p>If you're planning to build your own custom ROS2 robot that's differential
 drive, skid-steer, or mecanum drive using commonly-used parts and a
@@ -1027,6 +1028,7 @@ AI to navigate your robot, linorobot2 might not have much to offer beyond
 its interfaces at the base-controller level and at the Nav2 stack level.</p>
 </li>
 </ul>
+<hr />
 <h2 id="terminology">Terminology<a class="headerlink" href="#terminology" title="Permanent link">&para;</a></h2>
 <p>The following terms are used capitalized throughout these docs.
 Their meaning is defined here.</p>
@@ -1086,6 +1088,7 @@ loops onboard the Physical Robot.</p>
 for linorobot2 and linorobot2_hardware. In addition, anyone is welcome to
 join the [linorobot google group(https://groups.google.com/g/linorobot)
 and ask questions or discuss matters relevant to the project.</p>
+<hr />
 <h2 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h2>
 <h3 id="physical-robot">Physical Robot<a class="headerlink" href="#physical-robot" title="Permanent link">&para;</a></h3>
 <p>A Physical Robot should meet these requirements:</p>
@@ -1112,11 +1115,13 @@ it work.</p>
 <ul>
 <li>Must be able to run PlatformIO to build Robot Firmware for a Physical Robot.</li>
 </ul>
+<hr />
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <p>The architecture of the system within which a linorobot2 robot runs
 is described <a href="architecture/">here</a>. 
 Architectural goals and the Robot Software and Firmware
 architecture are also described.</p>
+<hr />
 <h2 id="system-configurations">System Configurations<a class="headerlink" href="#system-configurations" title="Permanent link">&para;</a></h2>
 <p>The linorobot2 software and firmware supports four system configurations,
 two for a Physical Robot and two for a Simulated Robot:</p>
@@ -1141,17 +1146,26 @@ with the GUI tools and launch Robot Software and the Simulated
 Robot in the cloud.</li>
 </ol>
 <p>The supported system configurations of linorobot2 are described,
-along with block diagrams <a href="SystemConfigurations/">here</a></p>
+along with block diagrams <a href="/system_configurations/">here</a></p>
+<hr />
 <h2 id="help-and-support_1">Help and Support<a class="headerlink" href="#help-and-support_1" title="Permanent link">&para;</a></h2>
 <p>Issues and Discussions can be filed in the usual way in the github repos for
 linorobot2 and linorobot2_hardware. In addition,
 anyone is welcome to join the [linorobot google group(https://groups.google.com/g/linorobot) and ask questions or discuss matters relevant to the project.</p>
+<hr />
 <h1 id="documentation-overview">Documentation Overview<a class="headerlink" href="#documentation-overview" title="Permanent link">&para;</a></h1>
 <h2 id="the-journey-bare-robot-autonomous-physical-robot-with-digital-twin">The Journey: Bare Robot → Autonomous Physical Robot with digital twin<a class="headerlink" href="#the-journey-bare-robot-autonomous-physical-robot-with-digital-twin" title="Permanent link">&para;</a></h2>
 <p>Here's the full path from hardware to autonomous navigation, in order:</p>
 <hr />
 <h3 id="1-installation">1. <a href="installation/">Installation</a><a class="headerlink" href="#1-installation" title="Permanent link">&para;</a></h3>
-<p>Get linorobot2 installed on both your Robot Computer and your Workstation. Covers the one-command <code>install.bash</code> setup script, the supported robot types and sensors, points to documentation on how to build and install the Robot Firmware for motor control etc, and how to install the RViz visualization package for remote debugging. Also covers the Gazebo simulation setup and the Docker option for host machines not running Ubuntu 24.04.</p>
+<p>Get linorobot2 Robot Software installed on both your Robot Computer and your
+Workstation. Get Robot Firmware built and installed on your Microcontroller.
+Covers the one-command <code>install.bash</code> setup script, the
+supported robot types and sensors, points to documentation on how to
+build and install the Robot Firmware for motor control etc, and how to
+install the RViz visualization package for remote debugging. Also covers
+the Gazebo simulation setup and the Docker option for host machines not
+running Ubuntu 24.04.</p>
 <hr />
 <h3 id="2-base-controller">2. <a href="base_controller/">Base Controller</a><a class="headerlink" href="#2-base-controller" title="Permanent link">&para;</a></h3>
 <p>The base controller is the bridge between Robot Software and your robot's motors and sensors. The Microcontroller (e.g., Pico or ESP32) running micro-ROS handles the low-level work: receiving <code>/cmd_vel</code> velocity commands, driving the motor controllers, reading wheel encoders, and publishing raw odometry and IMU data. This section explains the hardware architecture, the published/subscribed topics, and how to bring up the microcontroller agent. It points to documentation on how to build and configure the Base Controller.</p>
@@ -1292,7 +1306,7 @@ anyone is welcome to join the [linorobot google group(https://groups.google.com/
         
         
           
-          <a href="SystemConfigurations/" class="md-footer__link md-footer__link--next" aria-label="Next: System Configurations">
+          <a href="system_configurations/" class="md-footer__link md-footer__link--next" aria-label="Next: System Configurations">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
