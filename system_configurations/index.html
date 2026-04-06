@@ -319,6 +319,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#physical-robot-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical Robot Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Physical Robot Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#onboard-robot-computer-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -356,8 +368,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#robot-wifi-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -395,8 +407,25 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#simulated-robot-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulated Robot Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simulated Robot Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#workstation-simulation-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -434,8 +463,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#cloud-simulation-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -466,6 +495,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -752,6 +786,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#physical-robot-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical Robot Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Physical Robot Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#onboard-robot-computer-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -789,8 +835,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#robot-wifi-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -828,8 +874,25 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
+  <a href="#simulated-robot-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulated Robot Configurations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simulated Robot Configurations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#workstation-simulation-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -867,8 +930,8 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#cloud-simulation-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -906,6 +969,11 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
     </ul>
   
@@ -929,15 +997,17 @@
 
 <h1 id="system-configurations">System Configurations<a class="headerlink" href="#system-configurations" title="Permanent link">&para;</a></h1>
 <p>This page describes the supported system configurations of linorobot2.</p>
-<h2 id="onboard-robot-computer-configuration">Onboard Robot Computer configuration<a class="headerlink" href="#onboard-robot-computer-configuration" title="Permanent link">&para;</a></h2>
+<h2 id="physical-robot-configurations">Physical Robot Configurations<a class="headerlink" href="#physical-robot-configurations" title="Permanent link">&para;</a></h2>
+<p>The following two configurations are supported for a Physical Robot.</p>
+<h3 id="onboard-robot-computer-configuration">Onboard Robot Computer configuration<a class="headerlink" href="#onboard-robot-computer-configuration" title="Permanent link">&para;</a></h3>
 <p>This configuration features a computer mounted on the
 robot that runs ROS and communicates with the Microcontroller.
 As well, the network-connected Workstation provides for running
-rviz and other graphical programs on a desktop while the Physical Robot
+Rviz and other graphical programs on a desktop while the Physical Robot
 moves around. The Robot Computer Config is shown below.</p>
 <p><img alt="IMAGE: robot_computer_config" src="../assets/robot_computer_config.drawio.png" /></p>
 <p>Linorobot2 is installed on both the Workstation and the Robot Computer. A
-linorobot2 launchfile starts rviz on the workstation.
+linorobot2 launchfile starts Rviz on the workstation.
 Other linorobot2 launchfiles on the Robot Computer start robot bringup and Nav2.</p>
 <p>The firmware running on the Microcontroller publishes sensor
 data to Robot Software, which enables Nav2
@@ -951,20 +1021,20 @@ to the micro-ROS library in Robot Firmware, which makes them available
 for Robot Firmware use.</p>
 <p>High bandwidth sensors like lidar and depth camera are
 connected directly to the Robot Computer.</p>
-<h3 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h3>
+<h4 id="advantages">Advantages<a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Robot navigation may be wholly on the robot, making it independent
+<li>Robot navigation is wholly contained on the robot, making it independent
 of network connectivity and thus more robust.</li>
 </ul>
-<h3 id="disadvantages">Disadvantages<a class="headerlink" href="#disadvantages" title="Permanent link">&para;</a></h3>
+<h4 id="disadvantages">Disadvantages<a class="headerlink" href="#disadvantages" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Robot Computer brings extra power requirements, weight and cost</li>
 </ul>
-<h2 id="robot-wifi-configuration">Robot Wifi Configuration<a class="headerlink" href="#robot-wifi-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="robot-wifi-configuration">Robot Wifi Configuration<a class="headerlink" href="#robot-wifi-configuration" title="Permanent link">&para;</a></h3>
 <p>This configuration supports simple, low-hardware-cost robots by
 eliminating the Robot Computer hardware. The Workstation
 runs the Robot Software, as well
-as rviz and other graphical programs. The Workstation communicates over
+as Rviz and other graphical programs. The Workstation communicates over
 wifi with an ESP32 Microcontroller on the Physical Robot. This config takes
 advantage of micro-ros' ability to use either serial
 or wifi links. The Robot Wifi config is shown below.
@@ -980,23 +1050,24 @@ connection to the micro-ROS library on the Microcontroller, which makes them ava
 to firmware.</p>
 <p>Lidar sensor data is passed directly from the input serial port of the
 Microcontroller over wifi to a UDP port on the Workstation.</p>
-<h3 id="advantages_1">Advantages<a class="headerlink" href="#advantages_1" title="Permanent link">&para;</a></h3>
+<h4 id="advantages_1">Advantages<a class="headerlink" href="#advantages_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Lowest cost configuration eliminates Robot Computer hardware</li>
 <li>Lower power, weight</li>
-<li>All ROS SW runs on a single Workstation that's wifi connected
-to the robot microcontroller - no intercomputer DDS issues</li>
 </ul>
-<h3 id="disadvantages_1">Disadvantages<a class="headerlink" href="#disadvantages_1" title="Permanent link">&para;</a></h3>
+<h4 id="disadvantages_1">Disadvantages<a class="headerlink" href="#disadvantages_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Only supported on ESP32 microcontrollers (bandwidth on wifi-enabled
 Pico microcontrollers is insufficient.)</li>
 <li>Limited number of lidar sensors supported by firmware</li>
-<li>Depending on the wifi network, desired frame rate may not be achieved</li>
+<li>Dependent on excellent wifi connectivity. Depending on the wifi network,
+dead-spots may interrupt navigation and desired frame rate may not be achieved</li>
 </ul>
-<h2 id="workstation-simulation-configuration">Workstation Simulation Configuration<a class="headerlink" href="#workstation-simulation-configuration" title="Permanent link">&para;</a></h2>
+<h2 id="simulated-robot-configurations">Simulated Robot Configurations<a class="headerlink" href="#simulated-robot-configurations" title="Permanent link">&para;</a></h2>
+<p>The following configurations are supported for simulating robots.</p>
+<h3 id="workstation-simulation-configuration">Workstation Simulation Configuration<a class="headerlink" href="#workstation-simulation-configuration" title="Permanent link">&para;</a></h3>
 <p>This configuration runs a gazebo simulation of the robot,
-Robot Computer software, and rviz and other graphical programs on the
+Robot Computer software, and Rviz and other graphical programs on the
 Workstation. Only packages from the linorobot2 repo are used - the
 linorobot2_hardware repo is not involved (there is no hardware).</p>
 <p>This config enables development of robot algorithms prior to putting
@@ -1004,23 +1075,23 @@ them on a Physical Robot. It can optionally be run in a docker
 container, meaning the host OS is decoupled from ROS dependencies.</p>
 <p>The Workstation Simulation configuration is shown below.
 <img alt="workstation simulation config" src="../assets/simulation_config.drawio.png" /></p>
-<h3 id="advantages_2">Advantages<a class="headerlink" href="#advantages_2" title="Permanent link">&para;</a></h3>
+<h4 id="advantages_2">Advantages<a class="headerlink" href="#advantages_2" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Develop and test on a "digital twin" of the Physical Robot</li>
 <li>Test higher-level system components in a repeatable environment</li>
 <li>Eliminate HW-related problems (e.g. hardware malfunctions,
 need to reposition robot, battery and comms issues, etc.)</li>
 </ul>
-<h3 id="disadvantages_2">Disadvantages<a class="headerlink" href="#disadvantages_2" title="Permanent link">&para;</a></h3>
+<h4 id="disadvantages_2">Disadvantages<a class="headerlink" href="#disadvantages_2" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Hardware model fidelity, especially for sensors, limits 
 simulation accuracy</li>
 <li>The ultimate goal is to run on a real robot; simulation can only
 be a step on the path to that goal</li>
 </ul>
-<h2 id="cloud-simulation-configuration">Cloud Simulation Configuration<a class="headerlink" href="#cloud-simulation-configuration" title="Permanent link">&para;</a></h2>
+<h3 id="cloud-simulation-configuration">Cloud Simulation Configuration<a class="headerlink" href="#cloud-simulation-configuration" title="Permanent link">&para;</a></h3>
 <p>This configuration runs a Simulated Robot in Gazebo.
-Robot Software, rviz and other graphical programs run in a
+Robot Software, Rviz and other graphical programs run in a
 Docker instance on a virtual computer in the cloud.
 Only packages from the linorobot2 repo are used - the
 linorobot2_hardware repo is not involved (there is no hardware).
@@ -1029,13 +1100,13 @@ powerful cloud compute instance prior to putting
 them on a Physical Robot.
 The Cloud Simulation config is shown below.
 <img alt="cloud simulation config" src="../assets/cloud_simulation_config.drawio.png" /></p>
-<h3 id="advantages_3">Advantages<a class="headerlink" href="#advantages_3" title="Permanent link">&para;</a></h3>
+<h4 id="advantages_3">Advantages<a class="headerlink" href="#advantages_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Same as Workstation simulation</li>
 <li>You can rent higher-performance configurations (e.g. many NVidia GPUs)
 to speed up simulation</li>
 </ul>
-<h3 id="disadvantages_3">Disadvantages<a class="headerlink" href="#disadvantages_3" title="Permanent link">&para;</a></h3>
+<h4 id="disadvantages_3">Disadvantages<a class="headerlink" href="#disadvantages_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li>Same as Workstation simulation</li>
 <li>You typically pay based on cloud CPU usage. May be more or less expensive

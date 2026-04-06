@@ -947,7 +947,9 @@ needed to run the Robot Wifi Configuration.</p>
 to install Robot Software on the onboard Robot Computer.</p>
 <p>See <a href="../system_configurations/">here</a> for definitions of the configurations.</p>
 <h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
-<p>The Workstation and Robot Computer need ROS2 Jazzy. If you haven't installed it yet,
+<p>The Workstation and Robot Computer need supported versions of Ubuntu
+and ROS2. See the System Requirements section of the main page
+for supported versions. If you haven't installed it yet,
 use the <a href="https://github.com/linorobot/ros2me">ros2me</a> installer script,
 which has been tested on x86 and ARM boards including Raspberry Pi 4
 and Nvidia Jetson series.</p>
@@ -1181,8 +1183,9 @@ the following simplified Robot Software installation procedure.</p>
 <p>Available values: <code>2wd</code>, <code>4wd</code>, <code>mecanum</code>.</p>
 <p>The simulation package already includes RVIZ configurations, so you do not need to install <code>linorobot2_viz</code> separately when using the simulation.</p>
 <h2 id="docker-option">Docker Option<a class="headerlink" href="#docker-option" title="Permanent link">&para;</a></h2>
-<p>If you're not running Ubuntu 24.04 with ROS2 Jazzy, or you're running simulation
-in the cloud, Docker is a convenient alternative for running the simulation.</p>
+<p>If you're not running a supported combination of Ubuntu and ROS2 versions,
+or if you're running simulation in the cloud where you don't even have Ubuntu,
+Docker is a convenient alternative for running simulation.</p>
 <p>Install Docker using the <a href="https://docs.docker.com/engine/install/">official instructions</a> and follow the <a href="https://docs.docker.com/engine/install/linux-postinstall/">post-install steps</a> to run Docker without <code>sudo</code>.</p>
 <p>Customize <code>docker/.env</code> if needed (e.g., to change the robot type), then build the image:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/linorobot/linorobot2.git

@@ -514,10 +514,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-a-map" class="md-nav__link">
+  <a href="#launch-the-mapping-software-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating a Map
+        Launch the mapping software components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Launch the mapping software components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physical-robot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical Robot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulated-robot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulated Robot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-the-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate the map
       
     </span>
   </a>
@@ -525,10 +564,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#saving-the-map" class="md-nav__link">
+  <a href="#save-the-map" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Saving the Map
+        Save the Map
       
     </span>
   </a>
@@ -695,10 +734,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-a-map" class="md-nav__link">
+  <a href="#launch-the-mapping-software-components" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating a Map
+        Launch the mapping software components
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Launch the mapping software components">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physical-robot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical Robot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulated-robot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulated Robot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-the-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generate the map
       
     </span>
   </a>
@@ -706,10 +784,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#saving-the-map" class="md-nav__link">
+  <a href="#save-the-map" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Saving the Map
+        Save the Map
       
     </span>
   </a>
@@ -811,36 +889,42 @@
 </table>
 <p>For advanced tuning (adjusting loop closure thresholds, scan matching parameters, etc.), refer to the <a href="https://docs.nav2.org/tutorials/docs/navigation2_with_slam.html">Nav2 SLAM Toolbox documentation</a>.</p>
 <p>If you get the warning <code>slam_toolbox: Message Filter dropping message: frame 'laser'</code>, increase <code>transform_timeout</code> by 0.1 until it disappears.</p>
-<h2 id="creating-a-map">Creating a Map<a class="headerlink" href="#creating-a-map" title="Permanent link">&para;</a></h2>
-<p>Make sure the robot is fully booted and all topics (laser scan, odometry) are publishing before starting SLAM.</p>
-<p><strong>Terminal 1: Boot the robot</strong> (Physical Robot):</p>
+<h2 id="launch-the-mapping-software-components">Launch the mapping software components<a class="headerlink" href="#launch-the-mapping-software-components" title="Permanent link">&para;</a></h2>
+<h3 id="physical-robot">Physical Robot<a class="headerlink" href="#physical-robot" title="Permanent link">&para;</a></h3>
+<p><strong>Terminal 1: Launch the Physical Robot bringup</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>linorobot2_bringup<span class="w"> </span>bringup.launch.py
 </code></pre></div>
-<p>Or for Simulated Robot:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>linorobot2_gazebo<span class="w"> </span>gazebo.launch.py
+<p>Make sure all topics (laser scan, odometry) are publishing before starting SLAM.</p>
+<p><strong>Terminal 2: Start SLAM Toolbox:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>linorobot2_navigation<span class="w"> </span>slam.launch.py
+</code></pre></div>
+<p><strong>Terminal 3: Visualize (from Workstation):</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>linorobot2_viz<span class="w"> </span>slam.launch.py
+</code></pre></div>
+<p><strong>Terminal 4: Drive the robot:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>teleop_twist_keyboard<span class="w"> </span>teleop_twist_keyboard
+</code></pre></div>
+<h3 id="simulated-robot">Simulated Robot<a class="headerlink" href="#simulated-robot" title="Permanent link">&para;</a></h3>
+<p><strong>Terminal 1: Launch the Simulated Robot bringup, including Gazebo</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>linorobot2_gazebo<span class="w"> </span>gazebo.launch.py
 </code></pre></div>
 <p><strong>Terminal 2: Start SLAM Toolbox:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>linorobot2_navigation<span class="w"> </span>slam.launch.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>linorobot2_navigation<span class="w"> </span>slam.launch.py<span class="w"> </span>sim:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>rviz:<span class="o">=</span><span class="nb">true</span>
 </code></pre></div>
-<p>For the Simulated Robot:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>linorobot2_navigation<span class="w"> </span>slam.launch.py<span class="w"> </span>sim:<span class="o">=</span><span class="nb">true</span><span class="w"> </span>rviz:<span class="o">=</span><span class="nb">true</span>
+<p><strong>Terminal 3: Drive the robot:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>teleop_twist_keyboard<span class="w"> </span>teleop_twist_keyboard
 </code></pre></div>
-<p><strong>Terminal 3: Visualize (from host machine, ideally when working with Physical Robot):</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ros2<span class="w"> </span>launch<span class="w"> </span>linorobot2_viz<span class="w"> </span>slam.launch.py
-</code></pre></div>
+<h2 id="generate-the-map">Generate the map<a class="headerlink" href="#generate-the-map" title="Permanent link">&para;</a></h2>
 <p>In RViz you should see the laser scan (colored dots) and the map building up as the robot moves.</p>
-<p><strong>Terminal 4: Drive the robot:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ros2<span class="w"> </span>run<span class="w"> </span>teleop_twist_keyboard<span class="w"> </span>teleop_twist_keyboard
-</code></pre></div>
 <p>Drive the robot slowly and methodically through the entire area you want to map. Cover all rooms, hallways, and corners. Move at a moderate pace. Going too fast gives SLAM Toolbox less time to match scans and can cause drift.</p>
 <p><img alt="Mapping in progress" src="../assets/mapping.gif" /></p>
 <blockquote>
 <p><strong>Tip:</strong> Once the basic map outline is established, you can use RViz's <strong>2D Goal Pose</strong> tool to have the robot navigate autonomously while mapping. This is particularly useful for large spaces. See the <a href="https://navigation.ros.org/tutorials/docs/navigation2_with_slam.html">Nav2 SLAM tutorial</a> for details.</p>
 </blockquote>
-<h2 id="saving-the-map">Saving the Map<a class="headerlink" href="#saving-the-map" title="Permanent link">&para;</a></h2>
+<h2 id="save-the-map">Save the Map<a class="headerlink" href="#save-the-map" title="Permanent link">&para;</a></h2>
 <p>Once you're satisfied with the map, save it before shutting anything down. The map must be saved while SLAM Toolbox is still running.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>linorobot2/linorobot2_navigation/maps
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>nav2_map_server<span class="w"> </span>map_saver_cli<span class="w"> </span>-f<span class="w"> </span>&lt;map_name&gt;<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>save_map_timeout:<span class="o">=</span><span class="m">10000</span>.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>linorobot2/linorobot2_navigation/maps
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ros2<span class="w"> </span>run<span class="w"> </span>nav2_map_server<span class="w"> </span>map_saver_cli<span class="w"> </span>-f<span class="w"> </span>&lt;map_name&gt;<span class="w"> </span>--ros-args<span class="w"> </span>-p<span class="w"> </span>save_map_timeout:<span class="o">=</span><span class="m">10000</span>.
 </code></pre></div>
 <p>Replace <code>&lt;map_name&gt;</code> with a descriptive name (e.g., <code>office</code>, <code>lab</code>, <code>home</code>). This creates two files:</p>
 <ul>

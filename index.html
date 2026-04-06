@@ -919,7 +919,7 @@
 a "digital twin" of your Physical Robot and run it in simulation.</p>
 <p>These docs are structured as a tutorial sequence, with each section building on the previous one, explaining not just <em>how</em> to configure something but <em>why</em> it exists and what role it plays in the larger system. The approach is inspired by the <a href="https://docs.nav2.org/setup_guides/index.html">Nav2 setup guides</a> and the original <a href="https://github.com/linorobot/linorobot">linorobot</a> ROS1 wiki.</p>
 <p>linorobot2 supports three robot base configurations
-(differential drive, skid steer, mecanum drive) and integrates with ROS2 Jazzy, Nav2, SLAM Toolbox, and robot_localization out of the box.</p>
+(differential drive, skid steer, mecanum drive) and integrates with ROS2, Nav2, SLAM Toolbox, and robot_localization out of the box.</p>
 <hr />
 <h2 id="why-linorobot2">Why linorobot2<a class="headerlink" href="#why-linorobot2" title="Permanent link">&para;</a></h2>
 <p>If you're planning to build your own custom ROS2 robot that's differential
@@ -951,8 +951,9 @@ and Robot Software.</p>
 </li>
 <li>
 <p>Easier to keep robot customizations up to date with later versions of
-linorobot2 software and firmware. You don't want to get trapped in ROS-Jazzy
-or ROS-Humble because it's too hard to redo your customizations.
+linorobot2 software and firmware. You don't want to get trapped in an
+old version of ROS2 when they get upgraded
+because it's too hard to redo your customizations.
 Using the architected extension points in Robot Firmware and Robot Software
 properly can ease future migration.</p>
 </li>
@@ -984,7 +985,8 @@ and other physical hardware that moves in the real world.</p>
 </li>
 <li>
 <p><strong>Simulated Robot</strong>: The mobile base that gets instantiated in a Gazebo
-simulation, and moves in a simulated world.</p>
+simulation, and moves in a simulated world and has the same subscribed and
+published topics found in a Physical Robot.</p>
 </li>
 <li>
 <p><strong>Robot Software</strong>: The ROS software including linorobot2 and Nav2
@@ -1006,7 +1008,7 @@ Software.</p>
 </li>
 <li>
 <p><strong>Robot Computer</strong>: The computer that runs the Robot
-Software. It is a conceptual computer, and may be a physically distict
+Software. It is a conceptual computer, and may be a physically distinct
 computer, such as a Raspberry Pi mounted on a Physical Robot, or may be
 the Workstation running the Robot Software</p>
 </li>
@@ -1035,9 +1037,8 @@ loops onboard the Physical Robot.</p>
 <li>A single Microcontroller runs motor controllers, encoders and
 (optionally) an IMU.</li>
 <li>The robot has a supported lidar or a depth camera</li>
-<li>The Microcontroller should be an ESP32 or Pico or Pico2. ESP32 is required
-to make the Robot Wifi Configuration work. The Teensy microcontroller
-is deprecated but should still work.</li>
+<li>The Microcontroller should be a Pico or Pico2 or supported version
+of ESP32. The Teensy microcontroller is deprecated but should still work.</li>
 <li>Differential drive, skid-steer or meccanum drive type. Ackermann steered
 robots are not yet supported.</li>
 </ul>
@@ -1048,7 +1049,7 @@ it work.</p>
 <p>The Robot Computer must meet these requirements:</p>
 <ul>
 <li>At least a Raspberry Pi 4 level of performance</li>
-<li>Ubuntu 24.04 plus ROS-Jazzy or Docker support</li>
+<li>Ubuntu 24.04 plus ROS-Jazzy, or Docker support</li>
 </ul>
 <h3 id="workstation">Workstation<a class="headerlink" href="#workstation" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1068,9 +1069,10 @@ two for a Physical Robot and two for a Simulated Robot:</p>
 <ol>
 <li>Onboard Robot Computer Configuration: A computer mounted on the
 robot runs Robot Software which communicates with Robot Firmware
-using a serial link.</li>
+using a serial link. This is considered the "typical" configuration.</li>
 <li>Robot Wifi Configuration: Robot Software runs on the Workstation
-and communicates with Robot Firmware using wifi.</li>
+and communicates with Robot Firmware using wifi. This configuration
+supports very low-cost robots but does rely on very good wifi.</li>
 </ol>
 <h3 id="simulated-robot-system-configurations">Simulated Robot System Configurations<a class="headerlink" href="#simulated-robot-system-configurations" title="Permanent link">&para;</a></h3>
 <ol>
