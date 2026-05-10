@@ -33,7 +33,7 @@ use the [ros2me](https://github.com/linorobot/ros2me) installer script,
 which has been tested on x86 and ARM boards including Raspberry Pi 4
 and Nvidia Jetson series.
 
-### Workstation and Robot Computer Installation
+### Workstation and Robot Computer Installation (Scripted)
 
 The easiest way to get Robot Software installed on the robot computer
 is to run the provided bash script from the root of this repository. It
@@ -98,6 +98,13 @@ Sensors marked with `*` are depth cameras. When used as a laser sensor, the laun
 | `oakd` | [OAK-D](https://shop.luxonis.com/collections/oak-cameras-1/products/oak-d) |
 | `oakdlite` | [OAK-D Lite](https://shop.luxonis.com/collections/oak-cameras-1/products/oak-d-lite-1) |
 | `oakdpro` | [OAK-D Pro](https://shop.luxonis.com/collections/oak-cameras-1/products/oak-d-pro) |
+
+### Workstation and Robot Computer Installation (Manual)
+
+If you want to modify an existing installation on the Workstation or Robot Computer,
+or the scripted installation fails, you man need to perform part or all of the
+procedure manually. The ROBOT_INSTALLATION.md file in the root of the linorobot2 repo
+tells you how to manually install the various parts of linorobot2 software.
 
 ### Workstation: RVIZ (Remote Visualization) Support
 
