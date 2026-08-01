@@ -1,0 +1,52 @@
+# USB camera pipeline config.
+#
+# Two pipelines run on the Pi:
+#   1. usb_cam_node  - captures at FULL resolution/framerate for local use
+#                      (topic: /usb_camera/image_raw).
+#   2. resize_node   - downscales the full-res feed to a small, light image
+#                      that image_transport auto-compresses to JPEG for
+#                      streaming over slow networks
+#                      (topic: /usb_camera/downscaled/image_raw/compressed).
+#
+# Node keys use the /**/<node> wildcard so they match regardless of the
+# namespace the launch file puts the nodes in.
+
+/**/usb_cam_node:
+  ros__parameters:
+    video_device: "/dev/video0"
+    # Full-resolution local capture.
+    framerate: 30.0
+    io_method: "mmap"
+    # Optical frame from the URDF (REP-103), so perception projects correctly.
+    frame_id: "usb_camera_optical_link"
+    pixel_format: "mjpeg2rgb"
+    av_device_format: "YUV422P"
+    image_width: 640
+    image_height: 480
+    camera_name: "usb_camera"
+    camera_info_url: ""
+    brightness: -1
+    contrast: -1
+    saturation: -1
+    sharpness: -1
+    gain: -1
+    auto_white_balance: true
+    white_balance: 4000
+    autoexposure: true
+    exposure: 100
+    autofocus: false
+    focus: -1
+
+/**/resize_node:
+  ros__parameters:
+    # Downscaled output size for the network stream. Lower => less bandwidth.
+    use_scale: false
+    width: 320
+    height: 240
+    # JPEG-compressed transport settings for the downscaled stream
+    # (topic .../downscaled/image_raw/compressed). The leading dot is required:
+    # image_transport namespaces these params under the output topic, which the
+    # launch file remaps from "resize" to "downscaled".
+    # Lower jpeg_quality => smaller frames => less bandwidth. Range 1-100.
+    ".downscaled.image_raw.compressed.format": "jpeg"
+    ".downscaled.image_raw.compressed.jpeg_quality": 30

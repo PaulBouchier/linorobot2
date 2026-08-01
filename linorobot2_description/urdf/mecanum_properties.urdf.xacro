@@ -26,4 +26,8 @@
   <xacro:property name="depth_sensor_pose">
     <origin xyz="0.2375 0 0.06" rpy="0 0 0"/>
   </xacro:property>
+
+  <xacro:property name="usb_camera_pose">
+    <origin xyz="0.2375 0 0.09" rpy="0 0 0"/>
+  </xacro:property>
 </robot>
