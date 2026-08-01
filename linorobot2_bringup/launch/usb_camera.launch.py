@@ -70,8 +70,11 @@ def generate_launch_description():
             output='screen',
             parameters=[usb_camera_config_path],
             remappings=[
-                ('image', 'image_raw'),
-                ('camera_info', 'camera_info'),
+                # image_proc's ResizeNode names its raw topics <base>/image_raw
+                # and <base>/camera_info, so remap the full sub-topic names
+                # (matching how the 'resize' output side is remapped below).
+                ('image/image_raw', 'image_raw'),
+                ('image/camera_info', 'camera_info'),
                 ('resize/image_raw', 'downscaled/image_raw'),
                 ('resize/camera_info', 'downscaled/camera_info'),
             ]
