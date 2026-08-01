@@ -170,6 +170,39 @@ For example:
 
 If you export a depth sensor to `LINOROBOT2_LASER_SENSOR`, the launch file will run [depthimage_to_laserscan](https://github.com/ros-perception/depthimage_to_laserscan) to convert the depth sensor's depth image to laser.
 
+#### 2.3 USB Camera (Optional)
+A plain UVC USB camera (e.g. a webcam plugged into the Raspberry Pi) can be enabled by exporting its video device to the `LINOROBOT2_USB_CAMERA` env variable. This runs the [usb_cam](https://github.com/ros-drivers/usb_cam) driver as part of bringup.
+
+    echo "export LINOROBOT2_USB_CAMERA=/dev/video0" >> ~/.bashrc
+
+Two pipelines run on the Pi:
+
+- **Full resolution, for local use.** `usb_cam` captures at full resolution/framerate (default 640x480 @ 30 fps) and publishes `/usb_camera/image_raw` (with `/usb_camera/camera_info`). Use this on the Pi itself where bandwidth is free.
+- **Light, for slow networks.** An `image_proc` resize node downscales that feed (default 320x240) and `image_transport` auto-compresses it to JPEG on `/usb_camera/downscaled/image_raw/compressed`. This is what you subscribe to from a remote machine.
+
+Do **not** subscribe to `/usb_camera/image_raw` over the network — raw video will saturate a slow link. Use the compressed downscaled stream from the remote machine, e.g.:
+
+    ros2 run rqt_image_view rqt_image_view
+    # pick /usb_camera/downscaled/image_raw and set transport to "compressed"
+
+Or republish it back to a raw image for other tools:
+
+    ros2 run image_transport republish compressed --ros-args \
+        -r in/compressed:=/usb_camera/downscaled/image_raw/compressed \
+        -r out:=/usb_camera/downscaled/image_raw
+
+The network stream is on by default. If you only need the full-resolution local feed (and want to save CPU on the Pi), disable it:
+
+    echo "export LINOROBOT2_USB_CAMERA_STREAM=false" >> ~/.bashrc
+
+Tuning knobs in `linorobot2_bringup/config/usb_camera.yaml`:
+
+- Full-res capture: `image_width`/`image_height`/`framerate` under `usb_cam_node`.
+- Network stream size: `width`/`height` under `resize_node`.
+- Network stream quality: `.downscaled.image_raw.compressed.jpeg_quality` (1-100; lower = smaller frames).
+
+The camera is part of the robot's TF tree. The URDF adds a `usb_camera_link` (physical mount, positioned by `usb_camera_pose` in each robot's `*_properties.urdf.xacro`) and a `usb_camera_optical_link` child that follows the REP-103 optical convention. The driver stamps images with `usb_camera_optical_link` (`frame_id` in `usb_camera.yaml`), so images/point clouds project correctly in RViz and perception. Adjust the mounting position by editing `usb_camera_pose` for your robot base.
+
 ### 3. Save changes
 Source your `~/.bashrc` to apply the changes you made:
 
