@@ -25,7 +25,11 @@ from launch_ros.actions import Node, SetRemap
 def generate_launch_description():
     laser_sensor_name = os.getenv('LINOROBOT2_LASER_SENSOR', '')
     depth_sensor_name = os.getenv('LINOROBOT2_DEPTH_SENSOR', '')
-    
+    usb_camera_device = os.getenv('LINOROBOT2_USB_CAMERA', '')
+    # Downscaled/compressed network stream is on by default; set to '0'/'false'
+    # to publish only the full-resolution local feed.
+    usb_camera_stream = os.getenv('LINOROBOT2_USB_CAMERA_STREAM', 'true').lower() not in ('0', 'false', '')
+
     fake_laser_config_path = PathJoinSubstitution(
         [FindPackageShare('linorobot2_bringup'), 'config', 'fake_laser.yaml']
     )
@@ -67,6 +71,10 @@ def generate_launch_description():
         [FindPackageShare('linorobot2_bringup'), 'launch', 'depth.launch.py']
     )
 
+    usb_camera_launch_path = PathJoinSubstitution(
+        [FindPackageShare('linorobot2_bringup'), 'launch', 'usb_camera.launch.py']
+    )
+
     return LaunchDescription([
         GroupAction(
             actions=[
@@ -92,7 +100,15 @@ def generate_launch_description():
             remappings=[('depth', depth_topics[depth_sensor_name][0]),
                         ('depth_camera_info', depth_topics[depth_sensor_name][1])],
             parameters=[fake_laser_config_path]
-        ) 
+        ),
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(usb_camera_launch_path),
+            condition=IfCondition(PythonExpression(['"" != "', usb_camera_device, '"'])),
+            launch_arguments={
+                'video_device': usb_camera_device,
+                'stream': str(usb_camera_stream)
+            }.items()
+        )
     ])
 
    

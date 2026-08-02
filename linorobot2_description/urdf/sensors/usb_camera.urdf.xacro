@@ -1,0 +1,59 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:macro name="usb_camera" params="*origin">
+    <!-- Physical camera body - mounting frame, x-forward / y-left / z-up. -->
+    <link name="usb_camera_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.025 0.090 0.025"/>
+        </geometry>
+        <material name="blue">
+          <color rgba="0.0 0.2 0.6 1.0"/>
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.025 0.090 0.025"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.05"/>
+        <inertia ixx="${(1/12) * 0.05 * ((0.090 * 0.090) + (0.025 * 0.025))}" ixy="0.0" ixz="0.0"
+                 iyy="${(1/12) * 0.05 * ((0.025 * 0.025) + (0.025 * 0.025))}" iyz="0.0"
+                 izz="${(1/12) * 0.05 * ((0.025 * 0.025) + (0.090 * 0.090))}"/>
+      </inertial>
+    </link>
+
+    <gazebo reference="usb_camera_link">
+      <visual>
+        <material>
+          <ambient>0.0 0.2 0.6 1.0</ambient>
+          <diffuse>0.0 0.2 0.6 1.0</diffuse>
+          <specular>0.0 0.2 0.6 1.0</specular>
+          <emissive>0.0 0.0 0.0 1.0</emissive>
+        </material>
+      </visual>
+    </gazebo>
+
+    <joint name="usb_camera_to_base_link" type="fixed">
+      <parent link="base_link"/>
+      <child link="usb_camera_link"/>
+      <xacro:insert_block name="origin" />
+    </joint>
+
+    <!-- Optical frame - REP-103 convention (x-right, y-down, z-forward). The
+         usb_cam driver stamps images with this frame (see usb_camera.yaml),
+         so perception/visualization projects correctly. -->
+    <link name="usb_camera_optical_link"/>
+    <joint name="usb_camera_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
+      <parent link="usb_camera_link"/>
+      <child link="usb_camera_optical_link"/>
+    </joint>
+  </xacro:macro>
+</robot>
