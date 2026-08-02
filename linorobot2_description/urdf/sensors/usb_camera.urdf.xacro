@@ -1,7 +1,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:property name="M_PI" value="3.1415926535897931" />
   <xacro:macro name="usb_camera" params="*origin">
-    <!-- Physical camera body: mounting frame, x-forward / y-left / z-up. -->
+    <!-- Physical camera body - mounting frame, x-forward / y-left / z-up. -->
     <link name="usb_camera_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -46,7 +46,7 @@
       <xacro:insert_block name="origin" />
     </joint>
 
-    <!-- Optical frame: REP-103 convention (x-right, y-down, z-forward). The
+    <!-- Optical frame - REP-103 convention (x-right, y-down, z-forward). The
          usb_cam driver stamps images with this frame (see usb_camera.yaml),
          so perception/visualization projects correctly. -->
     <link name="usb_camera_optical_link"/>
