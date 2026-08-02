@@ -4,6 +4,3 @@ __pycache__
 **/__pycache__/**
 **.pyc
 COLCON_IGNORE
-build/
-install/
-log/
