@@ -203,6 +203,53 @@ Tuning knobs in `linorobot2_bringup/config/usb_camera.yaml`:
 
 The camera is part of the robot's TF tree. The URDF adds a `usb_camera_link` (physical mount, positioned by `usb_camera_pose` in each robot's `*_properties.urdf.xacro`) and a `usb_camera_optical_link` child that follows the REP-103 optical convention. The driver stamps images with `usb_camera_optical_link` (`frame_id` in `usb_camera.yaml`), so images/point clouds project correctly in RViz and perception. Adjust the mounting position by editing `usb_camera_pose` for your robot base.
 
+##### Building and testing the USB camera
+
+After pulling the code, install the new dependencies (`usb_cam`, `image_proc`, `image_transport_plugins`) and rebuild:
+
+    cd <your_ws>
+    rosdep update && rosdep install --from-path src --ignore-src -y --skip-keys microxrcedds_agent
+    colcon build
+    source install/setup.bash
+
+If `rosdep` doesn't resolve them, install directly:
+
+    sudo apt install ros-$ROS_DISTRO-usb-cam ros-$ROS_DISTRO-image-proc ros-$ROS_DISTRO-image-transport-plugins
+
+Plug in the camera and confirm the device node, then make sure your user can open it (one time; log out/in or reboot after):
+
+    ls /dev/video*
+    sudo usermod -aG video $USER
+
+To identify which `/dev/video*` node is the USB camera (a UVC cam usually exposes several):
+
+    sudo apt install v4l-utils
+    v4l2-ctl --list-devices
+
+Set the env variable and launch the camera standalone to test in isolation (or launch the full robot, which brings it up automatically):
+
+    export LINOROBOT2_USB_CAMERA=/dev/video0
+    ros2 launch linorobot2_bringup usb_camera.launch.py video_device:=/dev/video0
+
+In another terminal, verify both feeds publish at a steady rate (~30 Hz):
+
+    ros2 topic list | grep usb_camera
+    ros2 topic hz /usb_camera/image_raw
+    ros2 topic hz /usb_camera/downscaled/image_raw/compressed
+
+Confirm the resize node subscribes to the right inputs (it should list `/usb_camera/image_raw` and `/usb_camera/camera_info`):
+
+    ros2 node info /usb_camera/resize_node
+
+View the light stream from a remote machine on the same ROS network (matching `ROS_DOMAIN_ID`):
+
+    ros2 run rqt_image_view rqt_image_view
+    # pick /usb_camera/downscaled/image_raw/compressed (hit refresh if the dropdown is empty)
+
+Finally, check the camera frame is in TF (with the robot description running):
+
+    ros2 run tf2_ros tf2_echo base_link usb_camera_optical_link
+
 ### 3. Save changes
 Source your `~/.bashrc` to apply the changes you made:
 
