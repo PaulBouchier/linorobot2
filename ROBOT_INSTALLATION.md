@@ -183,13 +183,20 @@ Two pipelines run on the Pi:
 Do **not** subscribe to `/usb_camera/image_raw` over the network — raw video will saturate a slow link. Use the compressed downscaled stream from the remote machine, e.g.:
 
     ros2 run rqt_image_view rqt_image_view
-    # pick /usb_camera/downscaled/image_raw and set transport to "compressed"
+    # pick the BASE topic /usb_camera/downscaled/image_raw, then set the
+    # transport dropdown to "compressed"
 
-Or republish it back to a raw image for other tools:
+Pick the **base** topic (`/usb_camera/downscaled/image_raw`) and let the transport dropdown select `compressed`. Do **not** select the `/compressed` sub-topic directly and do **not** also pass `_image_transport:=compressed` — doing both makes rqt_image_view subscribe to the compressed topic with the wrong message type and it crashes (`invalid allocator` / `incompatible type CompressedImage`).
 
-    ros2 run image_transport republish compressed --ros-args \
-        -r in/compressed:=/usb_camera/downscaled/image_raw/compressed \
-        -r out:=/usb_camera/downscaled/image_raw
+If rqt_image_view is still flaky, the most reliable option is to decompress the stream to a plain raw topic once and view that (rqt then never touches compressed transport):
+
+    # terminal 1 — decompress to a raw topic
+    ros2 run image_transport republish compressed raw \
+        --ros-args -r in/compressed:=/usb_camera/downscaled/image_raw/compressed \
+                   -r out:=/usb_camera/view
+
+    # terminal 2 — view the plain raw topic
+    ros2 run rqt_image_view rqt_image_view /usb_camera/view
 
 The network stream is on by default. If you only need the full-resolution local feed (and want to save CPU on the Pi), disable it:
 
@@ -201,7 +208,20 @@ Tuning knobs in `linorobot2_bringup/config/usb_camera.yaml`:
 - Network stream size: `width`/`height` under `resize_node`.
 - Network stream quality: `.downscaled.image_raw.compressed.jpeg_quality` (1-100; lower = smaller frames).
 
-The camera is part of the robot's TF tree. The URDF adds a `usb_camera_link` (physical mount, positioned by `usb_camera_pose` in each robot's `*_properties.urdf.xacro`) and a `usb_camera_optical_link` child that follows the REP-103 optical convention. The driver stamps images with `usb_camera_optical_link` (`frame_id` in `usb_camera.yaml`), so images/point clouds project correctly in RViz and perception. Adjust the mounting position by editing `usb_camera_pose` for your robot base.
+The camera is part of the mowberry robot's TF tree. The URDF adds a `usb_camera_link` (physical mount, positioned by `usb_camera_pose` in `mowberry_properties.urdf.xacro`) and a `usb_camera_optical_link` child that follows the REP-103 optical convention. The driver stamps images with `usb_camera_optical_link` (`frame_id` in `usb_camera.yaml`), so images/point clouds project correctly in RViz and perception. Adjust the mounting position by editing `usb_camera_pose`.
+
+These frames are published by `robot_state_publisher`, **not** by the camera launch. The standalone `usb_camera.launch.py` only starts the camera driver — it does not publish TF. To get the camera TF you must run something that loads the URDF, with `LINOROBOT2_BASE=mowberry` set so the mowberry model (the one containing the camera links) is used:
+
+    # full robot (starts robot_state_publisher via description.launch.py):
+    LINOROBOT2_BASE=mowberry ros2 launch linorobot2_bringup bringup.launch.py base_serial_port:=/dev/ttyUSB0
+
+    # or, TF only without the motor board:
+    LINOROBOT2_BASE=mowberry ros2 launch linorobot2_description description.launch.py
+
+If `ros2 run tf2_ros tf2_echo base_link usb_camera_optical_link` reports no transform, check that `robot_state_publisher` is running and that the loaded URDF actually contains the camera (i.e. `LINOROBOT2_BASE` was `mowberry` at launch):
+
+    ros2 node list | grep robot_state_publisher
+    ros2 param get /robot_state_publisher robot_description | grep -c usb_camera   # should be > 0
 
 ##### Building and testing the USB camera
 
@@ -244,10 +264,14 @@ Confirm the resize node subscribes to the right inputs (it should list `/usb_cam
 View the light stream from a remote machine on the same ROS network (matching `ROS_DOMAIN_ID`):
 
     ros2 run rqt_image_view rqt_image_view
-    # pick /usb_camera/downscaled/image_raw/compressed (hit refresh if the dropdown is empty)
+    # pick the BASE topic /usb_camera/downscaled/image_raw and set transport to
+    # "compressed" (hit refresh if the dropdown is empty). Don't select the
+    # /compressed sub-topic directly — see the viewing notes above if it crashes.
 
-Finally, check the camera frame is in TF (with the robot description running):
+Finally, check the camera frame is in TF. This needs `robot_state_publisher` running with the mowberry model — the camera launch alone does not publish TF (see the TF note above):
 
+    LINOROBOT2_BASE=mowberry ros2 launch linorobot2_description description.launch.py
+    # then, in another terminal:
     ros2 run tf2_ros tf2_echo base_link usb_camera_optical_link
 
 ### 3. Save changes
