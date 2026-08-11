@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org">
+
+  <!-- Define the BNO085 IMU Macro -->
+  <xacro:macro name="bno085_imu" params="parent *origin">
+    
+    <!-- Joint connecting the IMU to the parent link -->
+    <joint name="bno085_imu_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="bno085_imu_link"/>
+    </joint>
+
+    <!-- IMU Link representing physical dimensions (26mm x 16mm x 1mm) -->
+    <link name="bno085_imu_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.026 0.016 0.001"/>
+        </geometry>
+        <material name="blue">
+          <color rgba="0.0 0.0 0.8 1.0"/>
+        </material>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.026 0.016 0.001"/>
+        </geometry>
+      </collision>
+
+      <!-- Minimal inertial block for physics simulators like Gazebo -->
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.005"/>
+        <inertia ixx="0.000000107" ixy="0.0" ixz="0.0" 
+                 iyy="0.000000282" iyz="0.0" 
+                 izz="0.000000388" />
+      </inertial>
+    </link>
+
+    <!-- ROS 2 Gazebo Sensor Plugin Simulation Block -->
+    <gazebo reference="bno085_imu_link">
+      <sensor name="bno085_imu_sensor" type="imu">
+        <always_on>true</always_on>
+        <update_rate>100</update_rate>
+        <imu>
+          <angular_velocity>
+            <x><noise type="gaussian"><mean>0.0</mean><stddev>2e-4</stddev></noise></x>
+            <y><noise type="gaussian"><mean>0.0</mean><stddev>2e-4</stddev></noise></y>
+            <z><noise type="gaussian"><mean>0.0</mean><stddev>2e-4</stddev></noise></z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x><noise type="gaussian"><mean>0.0</mean><stddev>1.7e-2</stddev></noise></x>
+            <y><noise type="gaussian"><mean>0.0</mean><stddev>1.7e-2</stddev></noise></y>
+            <z><noise type="gaussian"><mean>0.0</mean><stddev>1.7e-2</stddev></noise></z>
+          </linear_acceleration>
+        </imu>
+        <plugin name="bno085_imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+          <ros>
+            <namespace>/</namespace>
+            <remapping>~/out:=imu/data</remapping>
+          </ros>
+          <frame_name>bno085_imu_link</frame_name>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

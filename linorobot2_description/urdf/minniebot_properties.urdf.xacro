@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:property name="base_length" value="0.14" />
   <xacro:property name="base_width" value="0.14" />
-  <xacro:property name="base_height" value="0.01" />
+  <xacro:property name="base_height" value="0.003" />
   <xacro:property name="base_mass" value="0.5" />
   <!-- set empty on the wheel_mesh_file to use geometry instead of mesh -->
   <xacro:property name="base_mesh_file" value="" />
@@ -12,7 +12,7 @@
   <xacro:property name="wheel_width" value="0.017" />
   <xacro:property name="wheel_pos_x" value="0.02" />
   <xacro:property name="wheel_pos_y" value="0.08" />
-  <xacro:property name="wheel_pos_z" value="-0.03" />
+  <xacro:property name="wheel_pos_z" value="-0.011" />
   <xacro:property name="wheel_mass" value=".05" />
   <xacro:property name="wheel_torque" value="20" />
   <xacro:property name="front_caster_wheel" value="false" />
@@ -22,14 +22,12 @@
   <xacro:property name="wheel_mesh_file" value="" />
   <!-- <xacro:property name="wheel_mesh_file" value="file://$(find linorobot2_description)/meshes/tire.dae" /> -->
   
-  <xacro:property name="laser_pose">
-    <origin xyz="0.010 0 0.04" rpy="0 0 0"/>
+  <xacro:property name="imu_pose">
+    <origin xyz="0.048 0.054 0.01" rpy="0 0 0"/>
   </xacro:property>
 
-  <xacro:property name="depth_sensor_pose">
-    <origin xyz="0.04 0.0 -0.03" rpy="0 0 0"/>
+  <xacro:property name="laser_pose">
+    <origin xyz="0.022 0 0.056" rpy="0 0 0"/>
   </xacro:property>
-  <xacro:property name="sonar_pose">
-    <origin xyz="0.05 0 0" rpy="0 0 0"/>
-  </xacro:property>
+
 </robot>
