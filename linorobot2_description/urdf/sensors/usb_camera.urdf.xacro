@@ -46,11 +46,7 @@
       <xacro:insert_block name="origin" />
     </joint>
 
-<<<<<<< HEAD
     <!-- Optical frame - REP-103 convention (x-right, y-down, z-forward). The
-=======
-    <!-- Optical frame: REP-103 convention (x-right, y-down, z-forward). The
->>>>>>> c5dfb75 (Add USB camera support with TF integration)
          usb_cam driver stamps images with this frame (see usb_camera.yaml),
          so perception/visualization projects correctly. -->
     <link name="usb_camera_optical_link"/>
