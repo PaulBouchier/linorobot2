@@ -21,9 +21,11 @@ ekf_filter_node:
                        false, false, true,
                        false, false, false]
 
-        imu0: imu/data
-        imu0_config: [false, false, false,
-                      false, false, false,
-                      false, false, false,
-                      false, false, true,
-                      false, false, false]
+        # IMU disabled: no IMU fitted, firmware publishes all-zero imu/data.
+        # Uncomment when an IMU is installed.
+        # imu0: imu/data
+        # imu0_config: [false, false, false,
+        #               false, false, false,
+        #               false, false, false,
+        #               false, false, true,
+        #               false, false, false]
