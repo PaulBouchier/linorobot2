@@ -64,7 +64,7 @@
     </model>
 
     
-<model name="cabin">
+<model name="lab">
   <link name="link">
     <inertial>
       <mass>15</mass>
@@ -81,7 +81,7 @@
       <pose>0 0 0 0 0 0</pose>
       <geometry>
         <mesh>
-          <uri>model://cabin/meshes/cabin.stl</uri>
+          <uri>model://lab/meshes/lab.stl</uri>
         </mesh>
       </geometry>
     </collision>
@@ -89,7 +89,7 @@
       <pose>0 0 0 0 0 0</pose>
       <geometry>
         <mesh>
-          <uri>model://cabin/meshes/cabin.stl</uri>
+          <uri>model://lab/meshes/lab.stl</uri>
         </mesh>
       </geometry>
       <material>
