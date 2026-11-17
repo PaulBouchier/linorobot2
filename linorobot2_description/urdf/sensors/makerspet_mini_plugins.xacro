@@ -31,13 +31,13 @@
   </gazebo>
 
   <!-- gazebo reference="laser_frame" -->
-  <gazebo reference="base_scan">
+  <gazebo reference="laser">
     <sensor name="laser_scan_sensor" type="gpu_lidar">
     <!-- sensor type="ray" name="laser_scan_sensor" -->
-      <pose relative_to="base_scan"> 0 0 0 0 0 0 </pose>
+      <pose relative_to="laser"> 0 0 0 0 0 0 </pose>
       <update_rate>5</update_rate>
       <topic>scan</topic>
-      <gz_frame_id>base_scan</gz_frame_id>
+      <gz_frame_id>laser</gz_frame_id>
       <ray>
         <scan>
           <horizontal>

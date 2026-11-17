@@ -123,11 +123,11 @@
 
   <joint name="scan_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="base_scan"/>
+    <child link="laser"/>
     <origin xyz="${lidar_center_offset} 0 ${lower_cylinder_height + laser_puck_offset}" rpy="0 0 0"/>
   </joint>
 
-  <link name="base_scan">
+  <link name="laser">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
@@ -147,7 +147,7 @@
   </link>
 
   <joint name="scan_motor_joint" type="fixed">
-    <parent link="base_scan"/>
+    <parent link="laser"/>
     <child link="scan_motor"/>
     <origin xyz="${lidar_motor_x_offset} 0 ${lidar_motor_z_offset}" rpy="0 -${pi} 0"/>
   </joint>
