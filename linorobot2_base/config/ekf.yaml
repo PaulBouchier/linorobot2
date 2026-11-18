@@ -1,6 +1,6 @@
 ekf_filter_node:
     ros__parameters:
-        frequency: 50.0
+        frequency: 30.0
         two_d_mode: true
         publish_tf: true
  
@@ -20,10 +20,6 @@ ekf_filter_node:
                        true, true, false,
                        false, false, true,
                        false, false, false]
-
-        imu0: imu/data
-        imu0_config: [false, false, false,
-                      false, false, false,
-                      false, false, false,
-                      false, false, true,
-                      false, false, false]
+        odom0_differential: false
+        odom0_relative: false
+        odom0_queue_size: 10
