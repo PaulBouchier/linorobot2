@@ -15,7 +15,7 @@
   ros__parameters:
     video_device: "/dev/video0"
     # Full-resolution local capture.
-    framerate: 30.0
+    framerate: 4.0
     io_method: "mmap"
     # Optical frame from the URDF (REP-103), so perception projects correctly.
     frame_id: "usb_camera_optical_link"
