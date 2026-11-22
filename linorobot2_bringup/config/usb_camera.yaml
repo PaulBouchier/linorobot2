@@ -36,6 +36,7 @@
     exposure: 100
     autofocus: false
     focus: -1
+    "image_raw.enable_pub_plugins": ["image_transport/raw"]
 
 /**/resize_node:
   ros__parameters:
@@ -50,3 +51,4 @@
     # Lower jpeg_quality => smaller frames => less bandwidth. Range 1-100.
     ".downscaled.image_raw.compressed.format": "jpeg"
     ".downscaled.image_raw.compressed.jpeg_quality": 30
+    "downscaled.image_raw.enable_pub_plugins": ["image_transport/compressed"]
